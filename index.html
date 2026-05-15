@@ -149,5 +149,133 @@ for (let i = 0; i < 40; i++) {
 }
 </script>
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Otto Blog</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #0b0b12;
+  color: #eaeaff;
+}
+
+.container {
+  max-width: 750px;
+  margin: auto;
+  padding: 20px;
+  margin-top: 30px;
+  background: rgba(20,20,35,0.85);
+  border-radius: 15px;
+  border: 1px solid #3b4a6b;
+}
+
+/* Otto */
+.otto {
+  text-align: center;
+  padding: 10px;
+}
+
+.otto img {
+  width: 160px;
+  border-radius: 12px;
+}
+
+/* caja posts */
+.post {
+  background: rgba(255,255,255,0.05);
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 10px;
+  position: relative;
+}
+
+/* botón borrar */
+.delete {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: red;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+/* input */
+textarea {
+  width: 100%;
+  height: 70px;
+  border-radius: 8px;
+  border: none;
+  padding: 8px;
+  background: #1a1a2a;
+  color: white;
+}
+
+button {
+  margin-top: 8px;
+  background: #3b4a6b;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* mood */
+#mood {
+  text-align:center;
+  margin-top: 5px;
+  opacity: 0.8;
+}
+
+/* estrellas suaves */
+.star {
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.5;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 style="text-align:center;">🐱 Otto Blog</h1>
+
+<!-- OTTO -->
+<div class="otto">
+  <img src="https://i.postimg.cc/sDzMjM7f/5dtiwm7jwi4d1.gif" id="ottoImg">
+  <p id="ottoText">Otto está observando el universo...</p>
+</div>
+
+<p id="mood">Estado de ánimo: neutro 🌙</p>
+
+<hr>
+
+<!-- NUEVO POST -->
+<h3>✍ Nuevo post</h3>
+
+<textarea id="postText" placeholder="Escribe algo..."></textarea>
+<button onclick="addPost()">Publicar</button>
+
+<hr>
+
+<div id="posts"></div>
+
+</div>
+
+<script>
+
+let posts =
 </body>
 </html>
