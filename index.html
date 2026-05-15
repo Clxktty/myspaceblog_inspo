@@ -26,6 +26,7 @@ body {
 .otto {
   text-align: center;
 }
+
 .otto img {
   width: 160px;
   border-radius: 12px;
@@ -73,7 +74,7 @@ button {
   cursor: pointer;
 }
 
-/* IMAGEN POST */
+/* IMAGEN */
 .post img {
   width: 100%;
   margin-top: 10px;
@@ -86,6 +87,12 @@ button {
   opacity: 0.7;
 }
 
+/* filtro botones */
+.filter-bar {
+  margin-top: 15px;
+  text-align: center;
+}
+
 /* estrellas suaves */
 .star {
   position: fixed;
@@ -96,6 +103,7 @@ button {
   opacity: 0.5;
 }
 </style>
+
 </head>
 
 <body>
@@ -104,129 +112,6 @@ button {
 
 <h1 style="text-align:center;">🐱 Otto Blog</h1>
 
+<!-- OTTO -->
 <div class="otto">
-  <img src="https://i.postimg.cc/sDzMjM7f/5dtiwm7jwi4d1.gif">
-  <p id="ottoText">Otto observa tu universo...</p>
-</div>
-
-<hr>
-
-<!-- CREAR POST -->
-<h3>✍ Nuevo post</h3>
-
-<input id="title" placeholder="Título del post">
-
-<select id="category">
-  <option>🌙 vida</option>
-  <option>💭 pensamientos</option>
-  <option>💌 amor</option>
-  <option>🎧 música</option>
-</select>
-
-<textarea id="text" placeholder="Escribe algo..."></textarea>
-
-<input id="image" placeholder="URL de imagen (opcional)">
-<input id="music" placeholder="Link YouTube música (opcional)">
-
-<button onclick="addPost()">Publicar</button>
-
-<hr>
-
-<div id="posts"></div>
-
-</div>
-
-<script>
-
-let posts = JSON.parse(localStorage.getItem("posts")) || [];
-
-/* 🐱 OTTO simple */
-document.getElementById("ottoText").innerText =
-"Otto clasifica tus recuerdos con cuidado...";
-
-/* ➕ agregar post */
-function addPost() {
-
-  let post = {
-    title: document.getElementById("title").value,
-    category: document.getElementById("category").value,
-    text: document.getElementById("text").value,
-    image: document.getElementById("image").value,
-    music: document.getElementById("music").value,
-    date: new Date().toLocaleString()
-  };
-
-  if (post.text.trim() === "" && post.image === "") return;
-
-  posts.unshift(post);
-  localStorage.setItem("posts", JSON.stringify(posts));
-
-  document.getElementById("title").value = "";
-  document.getElementById("text").value = "";
-  document.getElementById("image").value = "";
-  document.getElementById("music").value = "";
-
-  renderPosts();
-}
-
-/* 🗑 borrar */
-function deletePost(i) {
-  posts.splice(i,1);
-  localStorage.setItem("posts", JSON.stringify(posts));
-  renderPosts();
-}
-
-/* 📜 mostrar */
-function renderPosts() {
-  let c = document.getElementById("posts");
-  c.innerHTML = "";
-
-  posts.forEach((p,i) => {
-
-    let div = document.createElement("div");
-    div.className = "post";
-
-    div.innerHTML = `
-      <button class="delete" onclick="deletePost(${i})">x</button>
-
-      <div class="cat">${p.category}</div>
-      <h3>${p.title}</h3>
-      <small>📅 ${p.date}</small>
-
-      <p>${p.text}</p>
-
-      ${p.image ? `<img src="${p.image}">` : ""}
-
-      ${p.music ? `
-      <iframe width="100%" height="80"
-      src="${convert(p.music)}"
-      allow="autoplay"></iframe>` : ""}
-    `;
-
-    c.appendChild(div);
-  });
-}
-
-/* 🎵 convertir link YouTube a embed */
-function convert(url){
-  if(!url) return "";
-  let id = url.split("v=")[1];
-  if(!id) id = url.split("/").pop();
-  return "https://www.youtube.com/embed/" + id;
-}
-
-renderPosts();
-
-/* 🌟 estrellas suaves */
-for (let i = 0; i < 50; i++) {
-  let s = document.createElement("div");
-  s.className = "star";
-  s.style.top = Math.random()*100 + "vh";
-  s.style.left = Math.random()*100 + "vw";
-  document.body.appendChild(s);
-}
-
-</script>
-
-</body>
-</html>
+  <img
