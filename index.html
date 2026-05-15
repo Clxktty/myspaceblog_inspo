@@ -1,67 +1,153 @@
-<div style="font-family:Arial; color:white; background:#0f0f1a; padding:15px; border-radius:15px;">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Otto Blog</title>
 
-<h2 style="text-align:center; color:#a6c8ff;">
-🌙 Mis propios GIF creados
-</h2>
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #0b0b12;
+  color: #eaeaff;
+  overflow-x: hidden;
+}
+
+/* 🌟 estrellas suaves */
+.star {
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: twinkle 3s infinite;
+}
+
+@keyframes twinkle {
+  0%,100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+/* contenedor */
+.container {
+  max-width: 700px;
+  margin: auto;
+  padding: 20px;
+  margin-top: 30px;
+  background: rgba(20,20,35,0.8);
+  border-radius: 15px;
+  border: 1px solid #3b4a6b;
+}
+
+/* Otto */
+.otto {
+  text-align: center;
+}
+
+.otto img {
+  width: 180px;
+  border-radius: 12px;
+}
+
+/* posts */
+.post {
+  background: rgba(255,255,255,0.05);
+  padding: 12px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+/* botón */
+button {
+  background: #3b4a6b;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+textarea {
+  width: 100%;
+  height: 80px;
+  margin-top: 10px;
+  border-radius: 8px;
+  border: none;
+  padding: 8px;
+  background: #1a1a2a;
+  color: white;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- OTTO -->
+<div class="container">
+
+<h1 style="text-align:center;">🐱 Otto Blog</h1>
+
+<div class="otto">
+  <img src="https://i.postimg.cc/sDzMjM7f/5dtiwm7jwi4d1.gif">
+  <p>Otto observa tus pensamientos en silencio...</p>
+</div>
 
 <hr>
 
-<p>life is strange:</p>
+<!-- CREAR POST -->
+<h3>✍ Nuevo post</h3>
+<textarea id="postInput" placeholder="Escribe algo..."></textarea>
+<button onclick="addPost()">Publicar</button>
 
-<img src="https://i.postimg.cc/sDzMjM7f/5dtiwm7jwi4d1.gif" style="width:200px;">
+<hr>
 
-<!-- esquina abajo izquierda -->
-<div style="position:fixed; bottom:10px; left:10px;">
-  <img src="https://www.animatedimages.org/data/media/291/animated-butterfly-image-0018.gif" width="60">
+<!-- POSTS -->
+<div id="posts"></div>
+
 </div>
 
-<!-- esquina abajo derecha -->
-<div style="position:fixed; bottom:10px; right:10px;">
+<script>
+// cargar posts guardados
+let posts = JSON.parse(localStorage.getItem("posts")) || [];
 
+function renderPosts() {
+  const container = document.getElementById("posts");
+  container.innerHTML = "";
 
-<style>
-@keyframes fall {
-  0% { transform: translateY(-100px); opacity:1; }
-  100% { transform: translateY(100vh); opacity:0; }
+  posts.forEach(p => {
+    const div = document.createElement("div");
+    div.className = "post";
+    div.innerHTML = "🌙 " + p;
+    container.appendChild(div);
+  });
 }
 
-.falling {
-  position: fixed;
-  top: -50px;
-  width: 40px;
-  animation: fall 6s linear infinite;
-  pointer-events: none;
+function addPost() {
+  const input = document.getElementById("postInput");
+  if (input.value.trim() === "") return;
+
+  posts.unshift(input.value);
+  localStorage.setItem("posts", JSON.stringify(posts));
+
+  input.value = "";
+  renderPosts();
 }
 
-.f1 { left:10%; animation-delay:0s; }
-.f2 { left:25%; animation-delay:2s; }
-.f3 { left:40%; animation-delay:4s; }
-.f4 { left:60%; animation-delay:1s; }
-.f5 { left:80%; animation-delay:3s; }
-</style>
+renderPosts();
 
-<img class="falling f1" src="https://i.postimg.cc/sDzMjM7f/5dtiwm7jwi4d1.gif">
-<img class="falling f2" src="https://i.postimg.cc/sDzMjM7f/5dtiwm7jwi4d1.gif">
-<img class="falling f3" src="https://i.postimg.cc/sDzMjM7f/5dtiwm7jwi4d1.gif">
-<img class="falling f4" src="https://i.postimg.cc/sDzMjM7f/5dtiwm7jwi4d1.gif">
-<img class="falling f5" src="https://i.postimg.cc/sDzMjM7f/5dtiwm7jwi4d1.gif">
+/* 🌟 estrellas suaves */
+for (let i = 0; i < 40; i++) {
+  let star = document.createElement("div");
+  star.className = "star";
+  star.style.top = Math.random() * 100 + "vh";
+  star.style.left = Math.random() * 100 + "vw";
+  star.style.animationDuration = (2 + Math.random() * 3) + "s";
+  document.body.appendChild(star);
+}
+</script>
 
-<iframe width="0" height="0"
-src="https://www.youtube.com/embed/RvnkAtWcKYg?autoplay=1&loop=1&playlist=RvnkAtWcKYg"
-allow="autoplay">
-</iframe>
-
-</div>
-  <img src="https://www.animatedimages.org/data/media/291/animated-butterfly-image-0018.gif" width="60">
-</div>
-
-<!-- arriba izquierda -->
-<div style="position:fixed; top:10px; left:10px;">
-  <img src="https://www.animatedimages.org/data/media/291/animated-butterfly-image-0018.gif" width="60">
-</div>
-
-<!-- arriba derecha -->
-<div style="position:fixed; top:10px; right:10px;">
-  <img src="https://www.animatedimages.org/data/media/291/animated-butterfly-image-0018.gif" width="60">
-</div>
-
+</body>
+</html>
